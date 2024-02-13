@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
 * Студент: [goulshat](https://up.htmlacademy.ru/react/15/user/1466653).
-* Наставник: `Неизвестно`.
+* Наставник: [Петр Хасанов](https://htmlacademy.ru/profile/id1058473).
 
 ---
 
