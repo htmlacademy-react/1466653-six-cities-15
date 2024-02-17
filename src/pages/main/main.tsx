@@ -1,8 +1,10 @@
-// import { FC } from 'react';
-// import { TAppProps } from '../../app';
+import { FC } from 'react';
+import { TAppProps } from '../../app';
 // import { OfferCard } from '../../components/offer-card';
 
-export const MainPage = () => (
+type TMainPageProps = Pick<TAppProps, 'cardAmount'>;
+
+export const MainPage: FC<TMainPageProps> = () => (
   <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
