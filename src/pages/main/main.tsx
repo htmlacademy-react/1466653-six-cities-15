@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { TAppProps } from '../../app';
-import { PlaceCard } from '../../components/place-card';
+import { OfferCard } from '../../components/offer-card';
 
 type TMainPageProps = Pick<TAppProps, 'cardAmount'>;
 
@@ -116,7 +116,7 @@ export const MainPage: FC<TMainPageProps> = ({ cardAmount }) => (
             <div className="cities__places-list places__list tabs__content">
               {
                 // eslint-disable-next-line react/no-array-index-key
-                cardAmount > 0 ? Array.from(new Array(cardAmount), (_, index) => <PlaceCard key={index} />) : 'there is no card'
+                cardAmount > 0 ? Array.from(new Array(cardAmount), (_, index) => <OfferCard key={index} />) : 'there is no card'
               }
             </div>
           </section>

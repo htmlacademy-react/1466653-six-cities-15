@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-export const PlaceCard: FC = () => (
+export const OfferCard: FC = () => (
   <article className="cities__card place-card">
     <div className="place-card__mark">
       <span>Premium</span>
