@@ -5,13 +5,17 @@ import { LoginPage } from '../pages/login';
 import { FavoritesPage } from '../pages/favorites';
 import { OfferPage } from '../pages/offer';
 import { NotFoundPage } from '../pages/not-found';
+import { LayoutPage } from '../pages/layout';
 
-export type TAppProps = { cardAmount?: number };
+export type TAppProps = {
+  hasFooter?: boolean;
+  cardAmount?: number;
+};
 
-export const App: FC<PropsWithChildren<TAppProps>> = ({ cardAmount }) => (
+export const App: FC<PropsWithChildren<TAppProps>> = ({ cardAmount, hasFooter }) => (
   <BrowserRouter>
     <Routes>
-      <Route path="/">
+      <Route path="/" element={<LayoutPage hasFooter={ hasFooter } />}>
         <Route index element={<MainPage cardAmount={ cardAmount } />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="favorites" element={<FavoritesPage />} />
