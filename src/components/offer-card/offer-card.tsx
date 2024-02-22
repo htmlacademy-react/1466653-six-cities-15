@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { TOffer } from '../../mock-data/mock';
+import { TOffer } from '../../types/offer';
 import { ratingRatio } from '../../const';
 import { capitalizeFirstLetter } from './../../utils';
 
@@ -63,5 +63,5 @@ export const OfferCard: FC<TOfferCardProps> = ({ offer }) => {
         <p className="place-card__type">{ capitalizeFirstLetter(offer.type) }</p>
       </div>
     </article>
-  )
+  );
 };

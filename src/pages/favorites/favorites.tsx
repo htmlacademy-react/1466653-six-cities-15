@@ -1,8 +1,7 @@
 import { FC } from 'react';
-import { TAppProps } from '../../app';
 import { Footer } from '../../components/footer';
 
-export const FavoritesPage: FC<TAppProps> = () => (
+export const FavoritesPage: FC = () => (
   <>
     <main className="page__main page__main--favorites">
       <div className="page__favorites-container container">

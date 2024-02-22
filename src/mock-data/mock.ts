@@ -1,3 +1,4 @@
+import { TOffer } from '../types/offer';
 import { getRandomInteger, getRandomArrayElement } from '../utils';
 
 const IMG_URL = 'https://loremflickr.com/248/152?random=';
@@ -8,41 +9,6 @@ export const LOCATIONS = CITIES.map((item, index) => ({
   title: item,
   src: '#'
 }));
-
-export type TApartmentType = 'apartment' | 'room' | 'house' | 'hotel';
-
-export type THost = {
-  name: string;
-  avatarUrl: string;
-  isPro: boolean;
-};
-export type TLocationCoordinates = {
-  latitude: number;
-  longitude: number;
-  zoom: number;
-};
-export type TCity = {
-  name: string;
-  location: TLocationCoordinates;
-}
-
-export type TOffer = {
-    id: string;
-    title: string;
-    type: TApartmentType;
-    price: number;
-    city: TCity;
-    location: TLocationCoordinates;
-    isFavorite: boolean;
-    isPremium: boolean;
-    rating: number;
-    description: string;
-    bedrooms: number;
-    goods: string[];
-    host: THost;
-    images: string[];
-    maxAdults: number;
-};
 
 const createRandomOffer = (index: number):TOffer => ({
   id: `6af6f711-c28d-4121-82cd-e0b462a27f00${index}`,

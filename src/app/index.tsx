@@ -6,7 +6,7 @@ import { FavoritesPage } from '../pages/favorites';
 import { OfferPage } from '../pages/offer';
 import { NotFoundPage } from '../pages/not-found';
 import { LayoutPage } from '../pages/layout';
-import { TOffer } from '../mock-data/mock';
+import { TOffer } from '../types/offer';
 
 export type TAppProps = {
   offers: TOffer[];

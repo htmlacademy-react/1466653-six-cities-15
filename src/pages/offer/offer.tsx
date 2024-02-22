@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { TAppProps } from '../../app';
 import { useParams } from 'react-router-dom';
-import { TOffer } from '../../mock-data/mock';
+import { TOffer } from '../../types/offer';
 import { ratingRatio } from '../../const';
 import { capitalizeFirstLetter } from '../../utils';
 

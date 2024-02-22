@@ -1,4 +1,5 @@
-import { TOffer, generateOffers } from './mock-data/mock';
+import { generateOffers } from './mock-data/mock';
+import { TOffer } from './types/offer';
 
 export const Setting = {
   CARDS_AMOUNT: 9,
