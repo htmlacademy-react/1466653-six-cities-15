@@ -1,8 +1,7 @@
 import { FC } from 'react';
-import { TAppProps } from '../../app';
 import { Footer } from '../../components/footer';
 
-export const NotFoundPage: FC<TAppProps> = () => (
+export const NotFoundPage: FC = () => (
   <>
     <main className="page__main" style={{
       display: 'flex',
