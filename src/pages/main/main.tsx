@@ -2,9 +2,9 @@ import { FC } from 'react';
 import { TAppProps } from '../../app';
 import { OfferCard } from '../../components/offer-card';
 
-type TMainPageProps = Pick<TAppProps, 'cardAmount' | 'hasFooter'>;
+type TMainPageProps = Pick<TAppProps, 'offers'>;
 
-export const MainPage: FC<TMainPageProps> = ({ cardAmount }) => (
+export const MainPage: FC<TMainPageProps> = ({ offers }) => (
   <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
     <div className="tabs">
@@ -77,7 +77,9 @@ export const MainPage: FC<TMainPageProps> = ({ cardAmount }) => (
           <div className="cities__places-list places__list tabs__content">
             {
               // eslint-disable-next-line react/no-array-index-key
-              cardAmount > 0 ? Array.from(new Array(cardAmount), (_, index) => <OfferCard key={index} />) : 'there is no card'
+              (offers.length > 0)
+                ? offers.map((offer) => <OfferCard key={offer.id} offer={offer} />)
+                : 'There are no offers'
             }
           </div>
         </section>
