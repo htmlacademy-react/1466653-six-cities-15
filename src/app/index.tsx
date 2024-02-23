@@ -9,6 +9,7 @@ import { LayoutPage } from '../pages/layout';
 import { TOffer } from '../types/offer';
 import { AppRoute } from './routes';
 import { AuthorizationStatus } from '../const';
+import { PrivateRoute } from '../components/private-routs';
 
 export type TAppProps = {
   offers: TOffer[];
@@ -22,7 +23,16 @@ export const App: FC<PropsWithChildren<TAppProps>> = ({ offers, authorizationSta
       <Route path={AppRoute.Main} element={<LayoutPage authorizationStatus={authorizationStatus} />}>
         <Route index element={<MainPage offers={offers} />} />
         <Route path={AppRoute.Login} element={<LoginPage />} />
-        <Route path={AppRoute.Favorites} element={<FavoritesPage />} />
+        <Route
+          path={AppRoute.Favorites}
+          element={
+            <PrivateRoute
+              authorizationStatus={authorizationStatus}
+            >
+              <FavoritesPage />
+            </PrivateRoute>
+          }
+        />
         <Route path={AppRoute.Offer} element={<OfferPage offers={offers} />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
