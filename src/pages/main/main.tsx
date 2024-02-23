@@ -1,12 +1,13 @@
 import { FC } from 'react';
 import { TAppProps } from '../../app';
-import { OfferCard } from '../../components/offer-card';
 import { TabList } from '../../components/tab-list';
+import { OffersSection } from '../../components/offers-section';
+import { OffersEmpty } from '../../components/offers-empty';
 
 type TMainPageProps = Pick<TAppProps, 'offers'>;
 
 export const MainPage: FC<TMainPageProps> = ({ offers }) => (
-  <main className="page__main page__main--index">
+  <main className={`page__main page__main--index ${offers.length === 0 ?? 'page__main--index-empty'}`}>
     <h1 className="visually-hidden">Cities</h1>
     <div className="tabs">
       <section className="locations container">
@@ -14,49 +15,11 @@ export const MainPage: FC<TMainPageProps> = ({ offers }) => (
       </section>
     </div>
     <div className="cities">
-      <div className="cities__places-container container">
-        <section className="cities__places places">
-          <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">312 places to stay in Amsterdam</b>
-          <form className="places__sorting" action="#" method="get">
-            <span className="places__sorting-caption">Sort by</span>
-            <span className="places__sorting-type" tabIndex={0}>
-              Popular
-              <svg className="places__sorting-arrow" width={7} height={4}>
-                <use xlinkHref="#icon-arrow-select" />
-              </svg>
-            </span>
-            <ul className="places__options places__options--custom places__options--opened">
-              <li
-                className="places__option places__option--active"
-                tabIndex={0}
-              >
-                Popular
-              </li>
-              <li className="places__option" tabIndex={0}>
-                Price: low to high
-              </li>
-              <li className="places__option" tabIndex={0}>
-                Price: high to low
-              </li>
-              <li className="places__option" tabIndex={0}>
-                Top rated first
-              </li>
-            </ul>
-          </form>
-          <div className="cities__places-list places__list tabs__content">
-            {
-              // eslint-disable-next-line react/no-array-index-key
-              (offers.length > 0)
-                ? offers.map((offer) => <OfferCard key={offer.id} offer={offer} />)
-                : 'There are no offers'
-            }
-          </div>
-        </section>
-        <div className="cities__right-section">
-          <section className="cities__map map" />
-        </div>
-      </div>
+      {
+        offers.length > 0
+          ? <OffersSection offers={offers} />
+          : <OffersEmpty />
+      }
     </div>
   </main>
 );
