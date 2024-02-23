@@ -14,9 +14,8 @@ export const OfferCard: FC<TOfferCardProps> = ({ offer }) => {
 
   return (
     <article className="cities__card place-card">
-      <div className="place-card__mark">
-        <span>{ offer.isFavorite ?? 'Premium' }</span>
-      </div>
+      { offer.isPremium ? <div className="place-card__mark"><span>Premium</span></div> : '' }
+
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`${AppRoute.Offer}/${offer.id}`} >
           <img
@@ -38,7 +37,7 @@ export const OfferCard: FC<TOfferCardProps> = ({ offer }) => {
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
           <button
-            className="place-card__bookmark-button button"
+            className={`place-card__bookmark-button ${offer.isFavorite ? 'place-card__bookmark-button--active' : ''} button`}
             type="button"
           >
             <svg
