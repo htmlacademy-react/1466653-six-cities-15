@@ -1,8 +1,12 @@
 import { FC } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Footer } from '../../components/footer';
 
 export const NotFoundPage: FC = () => (
   <>
+    <Helmet>
+      <title>Cities.Page not found</title>
+    </Helmet>
     <main className="page__main" style={{
       display: 'flex',
       flexDirection: 'column',

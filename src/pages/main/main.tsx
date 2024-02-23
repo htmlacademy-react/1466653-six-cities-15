@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { TAppProps } from '../../app';
 import { TabList } from '../../components/tab-list';
 import { OffersSection } from '../../components/offers-section';
@@ -8,6 +9,9 @@ type TMainPageProps = Pick<TAppProps, 'offers'>;
 
 export const MainPage: FC<TMainPageProps> = ({ offers }) => (
   <main className={`page__main page__main--index ${offers.length === 0 ?? 'page__main--index-empty'}`}>
+    <Helmet>
+      <title>Cities</title>
+    </Helmet>
     <h1 className="visually-hidden">Cities</h1>
     <div className="tabs">
       <section className="locations container">
