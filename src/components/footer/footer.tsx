@@ -1,8 +1,10 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../app/routes';
 
 export const Footer: FC = () => (
   <footer className="footer container">
-    <a className="footer__logo-link" href="main.html">
+    <Link className="footer__logo-link" to={AppRoute.Main}>
       <img
         className="footer__logo"
         src="img/logo.svg"
@@ -10,6 +12,6 @@ export const Footer: FC = () => (
         width={64}
         height={33}
       />
-    </a>
+    </Link>
   </footer>
 );

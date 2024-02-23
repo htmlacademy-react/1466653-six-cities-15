@@ -7,6 +7,7 @@ import { OfferPage } from '../pages/offer';
 import { NotFoundPage } from '../pages/not-found';
 import { LayoutPage } from '../pages/layout';
 import { TOffer } from '../types/offer';
+import { AppRoute } from './routes';
 
 export type TAppProps = {
   offers: TOffer[];
@@ -16,11 +17,11 @@ export const App: FC<PropsWithChildren<TAppProps>> = ({ offers }) => (
   // как передать в Layout интформацию о наличии футера?
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<LayoutPage />}>
+      <Route path={AppRoute.Main} element={<LayoutPage />}>
         <Route index element={<MainPage offers={offers} />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="favorites" element={<FavoritesPage />} />
-        <Route path="offer/:id" element={<OfferPage offers={offers} />} />
+        <Route path={AppRoute.Login} element={<LoginPage />} />
+        <Route path={AppRoute.Favorites} element={<FavoritesPage />} />
+        <Route path={AppRoute.Offer} element={<OfferPage offers={offers} />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
