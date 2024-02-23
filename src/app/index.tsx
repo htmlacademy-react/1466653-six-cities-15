@@ -33,7 +33,7 @@ export const App: FC<PropsWithChildren<TAppProps>> = ({ offers, authorizationSta
             </PrivateRoute>
           }
         />
-        <Route path={AppRoute.Offer} element={<OfferPage offers={offers} />} />
+        <Route path={AppRoute.Offer} element={<OfferPage offers={offers} authorizationStatus={authorizationStatus} />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

@@ -1,4 +1,4 @@
-import { TUser } from './user';
+import { THost } from './user';
 export type TApartmentType = 'apartment' | 'room' | 'house' | 'hotel';
 
 export type TLocationCoordinates = {
@@ -25,7 +25,7 @@ export type TOffer = {
     description: string;
     bedrooms: number;
     goods: string[];
-    host: TUser;
+    host: THost;
     images: string[];
     maxAdults: number;
 };
