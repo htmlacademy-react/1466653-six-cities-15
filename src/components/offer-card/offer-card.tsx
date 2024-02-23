@@ -1,5 +1,7 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 import { TOffer } from '../../types/offer';
+import { AppRoute } from '../../app/routes';
 import { ratingRatio } from '../../const';
 import { capitalizeFirstLetter } from './../../utils';
 
@@ -16,7 +18,7 @@ export const OfferCard: FC<TOfferCardProps> = ({ offer }) => {
         <span>{ offer.isFavorite ?? 'Premium' }</span>
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={`${AppRoute.Offer}/${offer.id}`} >
           <img
             className="place-card__image"
             src={
@@ -27,7 +29,7 @@ export const OfferCard: FC<TOfferCardProps> = ({ offer }) => {
             height={200}
             alt="Place image"
           />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -56,9 +58,9 @@ export const OfferCard: FC<TOfferCardProps> = ({ offer }) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">
-            { offer.description }
-          </a>
+          <Link to={`${AppRoute.Offer}/${offer.id}`}>
+            { offer.title }
+          </Link>
         </h2>
         <p className="place-card__type">{ capitalizeFirstLetter(offer.type) }</p>
       </div>
