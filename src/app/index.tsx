@@ -11,6 +11,7 @@ import { TOffer } from '../types/offer';
 import { AppRoute } from './routes';
 import { AuthorizationStatus } from '../const';
 import { PrivateRoute } from '../components/private-routs';
+import { ScrollToTop } from '../components/scroll-to-top';
 
 export type TAppProps = {
   offers: TOffer[];
@@ -22,6 +23,7 @@ export const App: FC<PropsWithChildren<TAppProps>> = ({ offers, authorizationSta
   // и доп стили к контейнеру 'page'
   <HelmetProvider>
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path={AppRoute.Main} element={<LayoutPage authorizationStatus={authorizationStatus} />}>
           <Route index element={<MainPage offers={offers} />} />
