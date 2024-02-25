@@ -12,7 +12,7 @@ const PageClass = {
 };
 
 export const LayoutPage: FC<TLayoutPageProps> = ({ authorizationStatus }) => (
-  <div className="page">
+  <div className={`page ${PageClass.MAIN}`}>
     <Header authorizationStatus={ authorizationStatus }/>
     <Outlet />
   </div>
