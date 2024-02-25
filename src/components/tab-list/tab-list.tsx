@@ -11,15 +11,13 @@ export type TLocation = {
 export const TabList: FC = () => (
   <ul className="locations__list tabs__list">
     {
-      LOCATIONS.length > 0
-        ? LOCATIONS.map((item: TLocation) => (
-          <li className="locations__item" key={ item.id }>
-            <NavLink className="locations__item-link tabs__item" to={item.src}>
-              <span>{item.title}</span>
-            </NavLink>
-          </li>
-        ))
-        : ''
+      LOCATIONS.length > 0 && (LOCATIONS.map((item: TLocation) => (
+        <li className="locations__item" key={ item.id }>
+          <NavLink className="locations__item-link tabs__item" to={item.src}>
+            <span>{item.title}</span>
+          </NavLink>
+        </li>
+      )))
     }
   </ul>
 );

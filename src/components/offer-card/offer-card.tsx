@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { TOffer } from '../../types/offer';
 import { AppRoute } from '../../app/routes';
-import { ratingRatio } from '../../const';
+import { Setting } from '../../const';
 import { capitalizeFirstLetter } from './../../utils';
 
 type TOfferCardProps = {
@@ -10,20 +10,17 @@ type TOfferCardProps = {
 };
 
 export const OfferCard: FC<TOfferCardProps> = ({ offer }) => {
-  const ratingWidthStyle = `${offer.rating * ratingRatio}%`;
+  const ratingWidthStyle = `${offer.rating * (100 / Setting.MAX_RATING)}%`;
 
   return (
     <article className="cities__card place-card">
-      { offer.isPremium ? <div className="place-card__mark"><span>Premium</span></div> : '' }
+      { offer.isPremium && (<div className="place-card__mark"><span>Premium</span></div>) }
 
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`${AppRoute.Offer}/${offer.id}`} >
           <img
             className="place-card__image"
-            src={
-              offer.images[0]
-              //`img/apartment-${id}.jpg`
-            }
+            src={offer.images[0]}
             width={260}
             height={200}
             alt="Place image"
@@ -37,7 +34,7 @@ export const OfferCard: FC<TOfferCardProps> = ({ offer }) => {
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
           <button
-            className={`place-card__bookmark-button ${offer.isFavorite ? 'place-card__bookmark-button--active' : ''} button`}
+            className={`place-card__bookmark-button ${offer.isFavorite && 'place-card__bookmark-button--active'} button`}
             type="button"
           >
             <svg
