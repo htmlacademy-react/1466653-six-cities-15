@@ -1,8 +1,8 @@
-import { TBaseOffer } from '../types/offer';
+import { IBaseOffer } from '../types/offer';
 import { CITIES, IMG_URL } from './mock';
 import { getRandomInteger, getRandomArrayElement } from '../utils';
 
-const createRandomFavorite = (index: number):TBaseOffer => ({
+const createRandomFavorite = (index: number):IBaseOffer => ({
   id: `6af6f711-c28d-4121-82cd-e0b462a27f01${index}`,
   title: 'Beautiful & luxurious studio at great location',
   type: 'house',
@@ -26,5 +26,5 @@ const createRandomFavorite = (index: number):TBaseOffer => ({
   previewImage: `${IMG_URL}${(getRandomInteger(1, 100))}`,
 });
 
-export const generateFavorites = (favoritesNumber: number): TBaseOffer[] => (
-  Array.from(new Array(favoritesNumber), (_, index): TBaseOffer => createRandomFavorite(index)));
+export const generateFavorites = (favoritesNumber: number): IBaseOffer[] => (
+  Array.from(new Array(favoritesNumber), (_, index): IBaseOffer => createRandomFavorite(index)));

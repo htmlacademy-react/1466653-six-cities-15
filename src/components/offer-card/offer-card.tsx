@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { TOffer } from '../../types/offer';
+import { IFullOffer } from '../../types/offer';
 import { AppRoute } from '../../app/routes';
 import { Setting } from '../../const';
 import { capitalizeFirstLetter } from './../../utils';
 
 type TOfferCardProps = {
-  offer: TOffer;
+  offer: IFullOffer;
 };
 
 export const OfferCard: FC<TOfferCardProps> = ({ offer }) => {

@@ -1,4 +1,4 @@
-import { TFullOffer } from '../types/offer';
+import { IFullOffer } from '../types/offer';
 import { getRandomInteger, getRandomArrayElement } from '../utils';
 
 export const IMG_URL = 'https://loremflickr.com/248/152?random=';
@@ -16,7 +16,7 @@ export const LOCATIONS = CITIES.map((item, index) => ({
   src: '#'
 }));
 
-const createRandomOffer = (index: number):TFullOffer => ({
+const createRandomOffer = (index: number):IFullOffer => ({
   id: `6af6f711-c28d-4121-82cd-e0b462a27f00${index}`,
   title: 'Beautiful & luxurious studio at great location',
   type: 'apartment',
@@ -55,5 +55,5 @@ const createRandomOffer = (index: number):TFullOffer => ({
   maxAdults: getRandomInteger(1, 5)
 });
 
-export const generateOffers = (offersNumber: number): TFullOffer[] => (
-  Array.from(new Array(offersNumber), (_, index): TFullOffer => createRandomOffer(index)));
+export const generateOffers = (offersNumber: number): IFullOffer[] => (
+  Array.from(new Array(offersNumber), (_, index): IFullOffer => createRandomOffer(index)));

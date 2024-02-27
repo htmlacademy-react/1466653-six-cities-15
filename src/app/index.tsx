@@ -7,14 +7,14 @@ import { FavoritesPage } from '../pages/favorites';
 import { OfferPage } from '../pages/offer';
 import { NotFoundPage } from '../pages/not-found';
 import { LayoutPage } from '../pages/layout';
-import { TOffer } from '../types/offer';
+import { IFullOffer } from '../types/offer';
 import { AppRoute } from './routes';
 import { AuthorizationStatus } from '../const';
 import { PrivateRoute } from '../components/private-routs';
 import { ScrollToTop } from '../components/scroll-to-top';
 
 export type TAppProps = {
-  offers: TOffer[];
+  offers: IFullOffer[];
   authorizationStatus: AuthorizationStatus;
 };
 

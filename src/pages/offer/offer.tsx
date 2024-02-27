@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { TAppProps } from '../../app';
 import { useParams } from 'react-router-dom';
-import { TOffer } from '../../types/offer';
+import { IFullOffer } from '../../types/offer';
 import { AuthorizationStatus, Setting } from '../../const';
 import { capitalizeFirstLetter } from '../../utils';
 import { ReviewForm } from '../../components/review-form';
@@ -13,7 +13,7 @@ type TOfferCardProps = Pick<TAppProps, 'offers' | 'authorizationStatus'>;
 
 export const OfferPage: FC<TOfferCardProps> = ({ offers, authorizationStatus }) => {
   const { id } = useParams();
-  const currentOffer: TOffer | undefined = offers.find((offer: TOffer) => offer.id === id);
+  const currentOffer: IFullOffer | undefined = offers.find((offer: IFullOffer) => offer.id === id);
 
   if (!currentOffer) {
     return <NotFoundPage />;

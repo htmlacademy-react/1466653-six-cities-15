@@ -13,7 +13,7 @@ export type TCity = {
   location: TLocationCoordinates;
 }
 
-export interface TBaseOffer {
+export interface IBaseOffer {
   id: string;
   title: string;
   type: TApartmentType;
@@ -26,7 +26,7 @@ export interface TBaseOffer {
   previewImage?: string; // ???
 }
 
-export interface TFullOffer extends TBaseOffer {
+export interface IFullOffer extends IBaseOffer {
   description: string;
   bedrooms: number;
   goods: string[];
