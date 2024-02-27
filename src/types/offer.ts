@@ -1,4 +1,5 @@
 import { THost } from './user';
+
 export type TApartmentType = 'apartment' | 'room' | 'house' | 'hotel';
 
 export type TLocationCoordinates = {
@@ -12,20 +13,24 @@ export type TCity = {
   location: TLocationCoordinates;
 }
 
-export type TOffer = {
-    id: string;
-    title: string;
-    type: TApartmentType;
-    price: number;
-    city: TCity;
-    location: TLocationCoordinates;
-    isFavorite: boolean;
-    isPremium: boolean;
-    rating: number;
-    description: string;
-    bedrooms: number;
-    goods: string[];
-    host: THost;
-    images: string[];
-    maxAdults: number;
-};
+export interface TBaseOffer {
+  id: string;
+  title: string;
+  type: TApartmentType;
+  price: number;
+  city: TCity;
+  location: TLocationCoordinates;
+  isFavorite: boolean;
+  isPremium: boolean;
+  rating: number;
+  previewImage?: string; // ???
+}
+
+export interface TFullOffer extends TBaseOffer {
+  description: string;
+  bedrooms: number;
+  goods: string[];
+  host: THost;
+  images: string[];
+  maxAdults: number;
+}

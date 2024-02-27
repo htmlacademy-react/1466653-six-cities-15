@@ -1,8 +1,9 @@
-import { TOffer } from '../types/offer';
+import { TFullOffer } from '../types/offer';
 import { getRandomInteger, getRandomArrayElement } from '../utils';
 
-const IMG_URL = 'https://loremflickr.com/248/152?random=';
-const CITIES: string[] = ['Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
+export const IMG_URL = 'https://loremflickr.com/248/152?random=';
+export const CITIES: string[] = ['Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
+
 const CITIES_DESCRIPTION: string[] = [
   'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
   'The hotel is centrally located in Brussels, near to Midi Station, which offers connections to international destinations, and also 1 km away from Grand Place and Manneken Pis.',
@@ -15,7 +16,7 @@ export const LOCATIONS = CITIES.map((item, index) => ({
   src: '#'
 }));
 
-const createRandomOffer = (index: number):TOffer => ({
+const createRandomOffer = (index: number):TFullOffer => ({
   id: `6af6f711-c28d-4121-82cd-e0b462a27f00${index}`,
   title: 'Beautiful & luxurious studio at great location',
   type: 'apartment',
@@ -54,5 +55,5 @@ const createRandomOffer = (index: number):TOffer => ({
   maxAdults: getRandomInteger(1, 5)
 });
 
-export const generateOffers = (offersNumber: number): TOffer[] => (
-  Array.from(new Array(offersNumber), (_, index): TOffer => createRandomOffer(index)));
+export const generateOffers = (offersNumber: number): TFullOffer[] => (
+  Array.from(new Array(offersNumber), (_, index): TFullOffer => createRandomOffer(index)));
