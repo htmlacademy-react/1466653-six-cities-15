@@ -1,10 +1,10 @@
 import { IBaseOffer } from '../types/offer';
-import { CITIES, IMG_URL } from './mock';
+import { CITIES, IMG_URL, PLACE_NAMES } from './mock';
 import { getRandomInteger, getRandomArrayElement } from '../utils';
 
 const createRandomFavorite = (index: number):IBaseOffer => ({
   id: `6af6f711-c28d-4121-82cd-e0b462a27f01${index}`,
-  title: 'Beautiful & luxurious studio at great location',
+  title: getRandomArrayElement(PLACE_NAMES),
   type: 'house',
   price: getRandomInteger(100, 1000),
   city: {
