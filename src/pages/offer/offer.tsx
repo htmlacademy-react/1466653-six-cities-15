@@ -126,7 +126,7 @@ export const OfferPage: FC<TOfferCardProps> = ({ offers, authorizationStatus }) 
               </h2>
               <ReviewsList />
               {
-                authorizationStatus === AuthorizationStatus.Auth ?? <ReviewForm />
+                authorizationStatus === AuthorizationStatus.Auth && <ReviewForm />
               }
             </section>
           </div>
