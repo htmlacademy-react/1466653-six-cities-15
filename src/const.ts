@@ -4,11 +4,34 @@ import { generateComments } from './mock-data/comments';
 import { TComment } from './types/comment';
 import { IFullOffer, IBaseOffer } from './types/offer';
 
+export const RATING: { value: number; title: string }[] = [
+  {
+    value: 5,
+    title: 'perfect',
+  },
+  {
+    value: 4,
+    title: 'good',
+  },
+  {
+    value: 3,
+    title: 'not bad',
+  },
+  {
+    value: 2,
+    title: 'badly',
+  },
+  {
+    value: 1,
+    title: 'terribly',
+  },
+];
+
 export const Setting = {
   CARDS_AMOUNT: 9,
   FAVORITES_AMOUNT: 5,
   COMMENTS_AMOUNT: 11,
-  MAX_RATING: 5,
+  MAX_RATING: RATING.length,
 };
 
 export enum AuthorizationStatus {
