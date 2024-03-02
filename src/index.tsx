@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './app/';
-import { offers } from './const';
+import { offers, favorites } from './const';
 import { AuthorizationStatus } from './const';
 
-const authorizationStatus = AuthorizationStatus.NoAuth;
+const authorizationStatus = AuthorizationStatus.Auth;
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,6 +13,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App offers={ offers } authorizationStatus={ authorizationStatus } />
+    <App
+      authorizationStatus={ authorizationStatus }
+      offers={ offers }
+      favorites={favorites}
+    />
   </React.StrictMode>
 );

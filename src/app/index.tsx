@@ -7,7 +7,7 @@ import { FavoritesPage } from '../pages/favorites';
 import { OfferPage } from '../pages/offer';
 import { NotFoundPage } from '../pages/not-found';
 import { LayoutPage } from '../pages/layout';
-import { IFullOffer } from '../types/offer';
+import { IBaseOffer, IFullOffer } from '../types/offer';
 import { AppRoute } from './routes';
 import { AuthorizationStatus } from '../const';
 import { PrivateRoute } from '../components/private-routs';
@@ -15,10 +15,11 @@ import { ScrollToTop } from '../components/scroll-to-top';
 
 export type TAppProps = {
   offers: IFullOffer[];
+  favorites: IBaseOffer[];
   authorizationStatus: AuthorizationStatus;
 };
 
-export const App: FC<PropsWithChildren<TAppProps>> = ({ offers, authorizationStatus }) => (
+export const App: FC<PropsWithChildren<TAppProps>> = ({ authorizationStatus, offers, favorites }) => (
   // как передать в Layout интформацию о наличии футера?
   // и доп стили к контейнеру 'page'
   <HelmetProvider>
@@ -34,7 +35,7 @@ export const App: FC<PropsWithChildren<TAppProps>> = ({ offers, authorizationSta
               <PrivateRoute
                 authorizationStatus={authorizationStatus}
               >
-                <FavoritesPage />
+                <FavoritesPage favorites={favorites} />
               </PrivateRoute>
             }
           />

@@ -1,10 +1,10 @@
 import { IFullOffer } from '../types/offer';
 import { getRandomInteger, getRandomArrayElement } from '../utils';
-import { IMG_URL, CITIES, CITIES_DESCRIPTION } from './mock';
+import { IMG_URL, CITIES, CITIES_DESCRIPTION, PLACE_NAMES } from './mock';
 
 const createRandomOffer = (index: number):IFullOffer => ({
   id: `6af6f711-c28d-4121-82cd-e0b462a27f00${index}`,
-  title: 'Beautiful & luxurious studio at great location',
+  title: getRandomArrayElement(PLACE_NAMES),
   type: 'apartment',
   price: getRandomInteger(100, 1000),
   city: {

@@ -1,5 +1,6 @@
 import { generateFavorites } from './mock-data/favorites';
-import { generateOffers } from './mock-data/mock';
+import { generateOffers } from './mock-data/offers';
+import { generateComments } from './mock-data/comments';
 import { TComment } from './types/comment';
 import { IFullOffer, IBaseOffer } from './types/offer';
 
