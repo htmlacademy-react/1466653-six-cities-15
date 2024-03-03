@@ -11,6 +11,7 @@ export const OffersList: FC<TOffersListProps> = ({ offers }) => {
   const cardHoverHandler = (offer?: IFullOffer) => {
     setActiveOffer(offer || null);
   };
+  // eslint-disable-next-line no-console
   console.log(activeOffer);
 
   return (
