@@ -19,7 +19,7 @@ export const ReviewsList: FC<TReviewsListProps> = ({comments}) => {
   return (
     <ul className="reviews__list">
       {
-        renderedComments.map(({ user, comment, rating, date }, index) => {
+        renderedComments.map(({ user, comment, rating, date }) => {
           const ratingWidthStyle = `${rating * (100 / Setting.MAX_RATING)}%`;
 
           return (
@@ -55,7 +55,7 @@ export const ReviewsList: FC<TReviewsListProps> = ({comments}) => {
                 </time>
               </div>
             </li>
-          )
+          );
         })
       }
     </ul>

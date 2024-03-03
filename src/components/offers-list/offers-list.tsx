@@ -11,6 +11,7 @@ export const OffersList: FC<TOffersListProps> = ({ offers }) => {
   const cardHoverHandler = (offer?: IFullOffer) => {
     setActiveOffer(offer || null);
   };
+  console.log(activeOffer);
 
   return (
     <div className="cities__places-list places__list tabs__content">
