@@ -2,6 +2,8 @@ import { FC } from 'react';
 import { TAppProps } from '../../app';
 import { Setting } from '../../const';
 import { capitalizeFirstLetter } from '../../utils';
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../app/routes';
 
 type TFavoriteOffersListProps = Pick<TAppProps, 'favorites'>;
 
@@ -16,7 +18,7 @@ export const FavoriteOffersList: FC<TFavoriteOffersListProps> = ({ favorites }) 
             {item.isPremium && (<div className="place-card__mark"><span>Premium</span></div>)}
 
             <div className="favorites__image-wrapper place-card__image-wrapper">
-              <a href="#">
+              <Link to={`${AppRoute.Offer}/${item.id}`}>
                 <img
                   className="place-card__image"
                   src="img/apartment-small-03.jpg"
@@ -24,7 +26,7 @@ export const FavoriteOffersList: FC<TFavoriteOffersListProps> = ({ favorites }) 
                   height={110}
                   alt="Place image"
                 />
-              </a>
+              </Link>
             </div>
             <div className="favorites__card-info place-card__info">
               <div className="place-card__price-wrapper">
@@ -59,7 +61,9 @@ export const FavoriteOffersList: FC<TFavoriteOffersListProps> = ({ favorites }) 
                 </div>
               </div>
               <h2 className="place-card__name">
-                <a href="#">{item.title}</a>
+                <Link to={`${AppRoute.Offer}/${item.id}`}>
+                  {item.title}
+                </Link>
               </h2>
               <p className="place-card__type">{capitalizeFirstLetter(item.type)}</p>
             </div>
