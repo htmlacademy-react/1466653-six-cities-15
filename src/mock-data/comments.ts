@@ -10,7 +10,13 @@ const COMMENTS: string[] = [
 
 const createRandomComment = (index: number):TComment => ({
   id: `b67ddfd5-b953-4a30-8c8d-bd083cd6b62a${index}`,
-  date: new Date(2024, 0, 1, 1),
+  date: new Date(
+    getRandomInteger(2022, 2024),
+    getRandomInteger(0, 3),
+    getRandomInteger(1, 29),
+    getRandomInteger(0, 23),
+    getRandomInteger(0, 59)
+  ),
   user: {
     name: 'Oliver Conner',
     avatarUrl: `${IMG_URL}${index + 1}`,
