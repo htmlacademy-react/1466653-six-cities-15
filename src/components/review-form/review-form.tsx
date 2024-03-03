@@ -2,6 +2,7 @@ import { FC, useState, SyntheticEvent, ChangeEvent, Fragment } from 'react';
 import { RATING } from '../../const';
 
 const REVIEW_MIN_LENGTH = 50;
+const REVIEW_MAX_LENGTH = 300;
 
 export const ReviewForm: FC = () => {
   const [formData, setFormData] = useState({
@@ -9,9 +10,13 @@ export const ReviewForm: FC = () => {
     review: '',
   });
 
-  // const checkIsFormValid = (): boolean => ();
+  const checkIsFormValid = (): boolean => !(
+    !formData.rating ||
+    formData.review.length < REVIEW_MIN_LENGTH ||
+    formData.review.length > REVIEW_MAX_LENGTH
+  );
 
-  const inputChangeHandler = (evt: ChangeEvent<HTMLInputElement>) => {
+  const inputChangeHandler = (evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = evt.target;
 
     setFormData({
@@ -20,7 +25,7 @@ export const ReviewForm: FC = () => {
     });
   };
 
-  const btnSubmitHandler = (evt: SyntheticEvent) => {
+  const formSubmitHandler = (evt: SyntheticEvent) => {
     evt.preventDefault();
   };
 
@@ -29,6 +34,7 @@ export const ReviewForm: FC = () => {
       className="reviews__form form"
       action="#"
       method="post"
+      onSubmit={formSubmitHandler}
     >
       <label className="reviews__label form__label" htmlFor="review">
         Your review
@@ -40,7 +46,7 @@ export const ReviewForm: FC = () => {
               <input
                 className="form__rating-input visually-hidden"
                 name="rating"
-                value={value}
+                defaultValue={value}
                 id={`${value}-stars`}
                 type="radio"
                 onChange={ inputChangeHandler }
@@ -65,6 +71,7 @@ export const ReviewForm: FC = () => {
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={formData.review}
+        onChange={ inputChangeHandler }
       />
 
       <div className="reviews__button-wrapper">
@@ -77,8 +84,7 @@ export const ReviewForm: FC = () => {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={!formData.rating || formData.review.length < REVIEW_MIN_LENGTH}
-          onClick={btnSubmitHandler}
+          disabled={!checkIsFormValid()}
         >
           Submit
         </button>
