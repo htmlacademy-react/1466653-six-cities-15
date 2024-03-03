@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './app/';
-import { offers, favorites } from './const';
+import { offers, favorites, comments } from './const';
 import { AuthorizationStatus } from './const';
 
 const authorizationStatus = AuthorizationStatus.Auth;
@@ -17,6 +17,7 @@ root.render(
       authorizationStatus={ authorizationStatus }
       offers={ offers }
       favorites={favorites}
+      comments={comments}
     />
   </React.StrictMode>
 );

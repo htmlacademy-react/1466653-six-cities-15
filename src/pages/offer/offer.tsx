@@ -9,9 +9,9 @@ import { NearPlacesList } from '../../components/near-places-list';
 import { ReviewsList } from '../../components/reviews-list';
 import { NotFoundPage } from '../not-found';
 
-type TOfferCardProps = Pick<TAppProps, 'offers' | 'authorizationStatus'>;
+type TOfferCardProps = Pick<TAppProps, 'offers' | 'authorizationStatus' | 'comments'>;
 
-export const OfferPage: FC<TOfferCardProps> = ({ offers, authorizationStatus }) => {
+export const OfferPage: FC<TOfferCardProps> = ({ offers, authorizationStatus, comments }) => {
   const { id } = useParams();
   const currentOffer: IFullOffer | undefined = offers.find((offer: IFullOffer) => offer.id === id);
 
@@ -124,7 +124,7 @@ export const OfferPage: FC<TOfferCardProps> = ({ offers, authorizationStatus }) 
               <h2 className="reviews__title">
                 Reviews · <span className="reviews__amount">1</span>
               </h2>
-              <ReviewsList />
+              <ReviewsList comments={comments} />
               {
                 authorizationStatus === AuthorizationStatus.Auth && <ReviewForm />
               }
