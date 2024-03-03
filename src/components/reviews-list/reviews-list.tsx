@@ -39,10 +39,8 @@ export const ReviewsList: FC<TReviewsListProps> = ({comments}) => (
               <p className="reviews__text">
                 { comment }
               </p>
-              <time className="reviews__time" dateTime="2019-04-24">
-                { DateHelper.getDateTime(date) }
-                <br />
-                { DateHelper.humanizeMonthYear(date) }
+              <time className="reviews__time" dateTime={ DateHelper.formatDatetime(date) }>
+                { DateHelper.formatMonthYear(date) }
               </time>
             </div>
           </li>
