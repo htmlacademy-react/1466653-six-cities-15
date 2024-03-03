@@ -33,7 +33,9 @@ export const App: FC<PropsWithChildren<TAppProps>> = ({
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<LayoutPage authorizationStatus={authorizationStatus}/>}
+          element={
+            <LayoutPage authorizationStatus={authorizationStatus} favorites={favorites} />
+          }
         >
           <Route index element={<MainPage offers={offers} />} />
           <Route path={AppRoute.Login} element={<LoginPage />} />
@@ -49,11 +51,13 @@ export const App: FC<PropsWithChildren<TAppProps>> = ({
           />
           <Route
             path={`${AppRoute.Offer}/:id`}
-            element={<OfferPage
-              offers={offers}
-              comments={comments}
-              authorizationStatus={authorizationStatus}
-            />}
+            element={
+              <OfferPage
+                offers={offers}
+                comments={comments}
+                authorizationStatus={authorizationStatus}
+              />
+            }
           />
           <Route path="*" element={<NotFoundPage />} />
         </Route>

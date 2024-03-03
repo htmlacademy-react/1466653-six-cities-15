@@ -4,9 +4,9 @@ import { TAppProps } from '../../app';
 import { AppRoute } from '../../app/routes';
 import { HeaderNavList } from '../header-nav-list';
 
-type THeaderProps = Pick<TAppProps, 'authorizationStatus'>;
+type THeaderProps = Pick<TAppProps, 'authorizationStatus'| 'favorites'>;
 
-export const Header: FC<THeaderProps> = ({ authorizationStatus }) => (
+export const Header: FC<THeaderProps> = ({ authorizationStatus, favorites }) => (
   <header className="header">
     <div className="container">
       <div className="header__wrapper">
@@ -25,7 +25,7 @@ export const Header: FC<THeaderProps> = ({ authorizationStatus }) => (
           </Link>
         </div>
         <nav className="header__nav">
-          <HeaderNavList authorizationStatus={authorizationStatus} />
+          <HeaderNavList authorizationStatus={authorizationStatus} favorites={favorites} />
         </nav>
       </div>
     </div>
