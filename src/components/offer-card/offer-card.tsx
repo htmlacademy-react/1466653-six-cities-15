@@ -7,14 +7,25 @@ import { capitalizeFirstLetter } from './../../utils';
 
 type TOfferCardProps = {
   offer: IFullOffer;
+  cardHoverHandler: (offer?: IFullOffer) => void;
 };
 
-export const OfferCard: FC<TOfferCardProps> = ({ offer }) => {
+export const OfferCard: FC<TOfferCardProps> = ({ offer, cardHoverHandler }) => {
   const ratingWidthStyle = `${offer.rating * (100 / Setting.MAX_RATING)}%`;
+  const mouseEnterHandler = () => {
+    cardHoverHandler(offer);
+  };
+  const mouseLeaveHandler = () => {
+    cardHoverHandler();
+  };
 
   return (
     <Link to={`${AppRoute.Offer}/${offer.id}`} >
-      <article className="cities__card place-card">
+      <article
+        className="cities__card place-card"
+        onMouseEnter={mouseEnterHandler}
+        onMouseLeave={mouseLeaveHandler}
+      >
         { offer.isPremium && (<div className="place-card__mark"><span>Premium</span></div>) }
 
         <div className="cities__image-wrapper place-card__image-wrapper">
