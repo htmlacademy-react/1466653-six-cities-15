@@ -4,9 +4,9 @@ import { TAppProps } from '../../app';
 import { AuthorizationStatus } from '../../const';
 import { AppRoute } from '../../app/routes';
 
-type THeaderNavListProps = Pick<TAppProps, 'authorizationStatus'>;
+type THeaderNavListProps = Pick<TAppProps, 'authorizationStatus' | 'favorites'>;
 
-export const HeaderNavList: FC<THeaderNavListProps> = ({ authorizationStatus }) => (
+export const HeaderNavList: FC<THeaderNavListProps> = ({ authorizationStatus, favorites }) => (
   authorizationStatus === AuthorizationStatus.Auth
     ?
     <ul className="header__nav-list">
@@ -19,7 +19,9 @@ export const HeaderNavList: FC<THeaderNavListProps> = ({ authorizationStatus }) 
           <span className="header__user-name user__name">
                 Oliver.conner@gmail.com
           </span>
-          <span className="header__favorite-count">3</span>
+          <span className="header__favorite-count">
+            {favorites.length}
+          </span>
         </Link>
       </li>
       <li className="header__nav-item">

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { TAppProps } from '../../app';
 import { useParams } from 'react-router-dom';
-import { TOffer } from '../../types/offer';
+import { IFullOffer } from '../../types/offer';
 import { AuthorizationStatus, Setting } from '../../const';
 import { capitalizeFirstLetter } from '../../utils';
 import { ReviewForm } from '../../components/review-form';
@@ -9,11 +9,11 @@ import { NearPlacesList } from '../../components/near-places-list';
 import { ReviewsList } from '../../components/reviews-list';
 import { NotFoundPage } from '../not-found';
 
-type TOfferCardProps = Pick<TAppProps, 'offers' | 'authorizationStatus'>;
+type TOfferCardProps = Pick<TAppProps, 'offers' | 'authorizationStatus' | 'comments'>;
 
-export const OfferPage: FC<TOfferCardProps> = ({ offers, authorizationStatus }) => {
+export const OfferPage: FC<TOfferCardProps> = ({ offers, authorizationStatus, comments }) => {
   const { id } = useParams();
-  const currentOffer: TOffer | undefined = offers.find((offer: TOffer) => offer.id === id);
+  const currentOffer: IFullOffer | undefined = offers.find((offer: IFullOffer) => offer.id === id);
 
   if (!currentOffer) {
     return <NotFoundPage />;
@@ -122,11 +122,11 @@ export const OfferPage: FC<TOfferCardProps> = ({ offers, authorizationStatus }) 
             </div>
             <section className="offer__reviews reviews">
               <h2 className="reviews__title">
-                Reviews · <span className="reviews__amount">1</span>
+                Reviews · <span className="reviews__amount">{comments.length}</span>
               </h2>
-              <ReviewsList />
+              <ReviewsList comments={comments} />
               {
-                authorizationStatus === AuthorizationStatus.Auth ?? <ReviewForm />
+                authorizationStatus === AuthorizationStatus.Auth && <ReviewForm />
               }
             </section>
           </div>

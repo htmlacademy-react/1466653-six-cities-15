@@ -7,25 +7,36 @@ import { FavoritesPage } from '../pages/favorites';
 import { OfferPage } from '../pages/offer';
 import { NotFoundPage } from '../pages/not-found';
 import { LayoutPage } from '../pages/layout';
-import { TOffer } from '../types/offer';
+import { IBaseOffer, IFullOffer } from '../types/offer';
+import { TComment } from '../types/comment';
 import { AppRoute } from './routes';
 import { AuthorizationStatus } from '../const';
 import { PrivateRoute } from '../components/private-routs';
 import { ScrollToTop } from '../components/scroll-to-top';
 
 export type TAppProps = {
-  offers: TOffer[];
+  offers: IFullOffer[];
+  favorites: IBaseOffer[];
+  comments: TComment[];
   authorizationStatus: AuthorizationStatus;
 };
 
-export const App: FC<PropsWithChildren<TAppProps>> = ({ offers, authorizationStatus }) => (
-  // как передать в Layout интформацию о наличии футера?
-  // и доп стили к контейнеру 'page'
+export const App: FC<PropsWithChildren<TAppProps>> = ({
+  authorizationStatus,
+  offers,
+  favorites,
+  comments
+}) => (
   <HelmetProvider>
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
-        <Route path={AppRoute.Main} element={<LayoutPage authorizationStatus={authorizationStatus} />}>
+        <Route
+          path={AppRoute.Main}
+          element={
+            <LayoutPage authorizationStatus={authorizationStatus} favorites={favorites} />
+          }
+        >
           <Route index element={<MainPage offers={offers} />} />
           <Route path={AppRoute.Login} element={<LoginPage />} />
           <Route
@@ -34,11 +45,20 @@ export const App: FC<PropsWithChildren<TAppProps>> = ({ offers, authorizationSta
               <PrivateRoute
                 authorizationStatus={authorizationStatus}
               >
-                <FavoritesPage />
+                <FavoritesPage favorites={favorites} />
               </PrivateRoute>
             }
           />
-          <Route path={`${AppRoute.Offer}/:id`} element={<OfferPage offers={offers} authorizationStatus={authorizationStatus} />} />
+          <Route
+            path={`${AppRoute.Offer}/:id`}
+            element={
+              <OfferPage
+                offers={offers}
+                comments={comments}
+                authorizationStatus={authorizationStatus}
+              />
+            }
+          />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
