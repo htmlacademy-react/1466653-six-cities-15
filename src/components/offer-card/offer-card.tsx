@@ -7,16 +7,16 @@ import { capitalizeFirstLetter } from './../../utils';
 
 type TOfferCardProps = {
   offer: IFullOffer;
-  cardHoverHandler: (offer?: IFullOffer) => void;
+  hoverHandler: (offer?: IFullOffer) => void;
 };
 
-export const OfferCard: FC<TOfferCardProps> = ({ offer, cardHoverHandler }) => {
+export const OfferCard: FC<TOfferCardProps> = ({ offer, hoverHandler }) => {
   const ratingWidthStyle = `${offer.rating * (100 / Setting.MAX_RATING)}%`;
   const mouseEnterHandler = () => {
-    cardHoverHandler(offer);
+    hoverHandler(offer);
   };
   const mouseLeaveHandler = () => {
-    cardHoverHandler();
+    hoverHandler();
   };
 
   return (
