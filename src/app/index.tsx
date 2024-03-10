@@ -7,7 +7,7 @@ import { FavoritesPage } from '../pages/favorites';
 import { OfferPage } from '../pages/offer';
 import { NotFoundPage } from '../pages/not-found';
 import { LayoutPage } from '../pages/layout';
-import { IBaseOffer, IFullOffer } from '../types/offer';
+import { IBaseOffer, IFullOffer, TCity } from '../types/offer';
 import { TComment } from '../types/comment';
 import { AppRoute } from './routes';
 import { AuthorizationStatus } from '../const';
@@ -19,13 +19,15 @@ export type TAppProps = {
   favorites: IBaseOffer[];
   comments: TComment[];
   authorizationStatus: AuthorizationStatus;
+  cities: TCity[];
 };
 
 export const App: FC<PropsWithChildren<TAppProps>> = ({
   authorizationStatus,
   offers,
   favorites,
-  comments
+  comments,
+  cities,
 }) => (
   <HelmetProvider>
     <BrowserRouter>
@@ -37,7 +39,7 @@ export const App: FC<PropsWithChildren<TAppProps>> = ({
             <LayoutPage authorizationStatus={authorizationStatus} favorites={favorites} />
           }
         >
-          <Route index element={<MainPage offers={offers} />} />
+          <Route index element={<MainPage offers={offers} cities={cities} />} />
           <Route path={AppRoute.Login} element={<LoginPage />} />
           <Route
             path={AppRoute.Favorites}

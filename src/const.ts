@@ -1,8 +1,9 @@
+import { TComment } from './types/comment';
+import { IFullOffer, IBaseOffer, TCity } from './types/offer';
 import { generateFavorites } from './mock-data/favorites';
 import { generateOffers } from './mock-data/offers';
 import { generateComments } from './mock-data/comments';
-import { TComment } from './types/comment';
-import { IFullOffer, IBaseOffer } from './types/offer';
+import { generateCities } from './mock-data/cities';
 
 export const RATING: { value: number; title: string }[] = [
   {
@@ -43,3 +44,4 @@ export enum AuthorizationStatus {
 export const offers: IFullOffer[] = generateOffers(Setting.CARDS_AMOUNT);
 export const favorites: IBaseOffer[] = generateFavorites(Setting.FAVORITES_AMOUNT);
 export const comments: TComment[] = generateComments(Setting.FAVORITES_AMOUNT);
+export const cities: TCity[] = generateCities();

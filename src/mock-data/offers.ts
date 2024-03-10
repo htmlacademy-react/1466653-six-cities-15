@@ -1,6 +1,6 @@
 import { IFullOffer } from '../types/offer';
 import { getRandomInteger, getRandomArrayElement } from '../utils';
-import { IMG_URL, CITIES, CITIES_DESCRIPTION, PLACE_NAMES } from './mock';
+import { IMG_URL, CITIES, CITIES_DESCRIPTION, PLACE_NAMES, LATITUDES, LONGITUDES } from './mock';
 
 const createRandomOffer = (index: number):IFullOffer => ({
   id: `6af6f711-c28d-4121-82cd-e0b462a27f00${index}`,
@@ -16,8 +16,8 @@ const createRandomOffer = (index: number):IFullOffer => ({
     }
   },
   location: {
-    latitude: 52.35514938496378,
-    longitude: 4.673877537499948,
+    latitude: getRandomArrayElement(LATITUDES),
+    longitude: getRandomArrayElement(LONGITUDES),
     zoom: getRandomInteger(4, 8)
   },
   isFavorite: !!(getRandomInteger(0, 1)),
