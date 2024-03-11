@@ -1,10 +1,11 @@
 import { FC, useRef } from 'react';
 import { Nullable } from 'vitest';
 import { TAppProps } from '../../app';
-import { TCity, IBaseOffer } from '../../types/offer';
+import { IBaseOffer } from '../../types/offer';
+import useMap from '../../hooks/use-map';
 
 type TMapProps = Pick<TAppProps, 'offers'> & {
-  city: Nullable<TCity>;
+  // city: Nullable<TCity>;
   selectedOffer: Nullable<IBaseOffer>;
 };
 
@@ -22,9 +23,10 @@ const currentCustomIcon = new Icon({
 });
 */
 
-// export const Map: FC<TMapProps> = ({ city, offers, selectedOffer }) => {
-export const Map: FC<TMapProps> = () => {
-  const mapRef = useRef(null);
+export const Map: FC<TMapProps> = ({ offers, selectedOffer }) => {
+// export const Map: FC<TMapProps> = () => {
+  const mapRef = useRef<HTMLElement | null>(null);
+  const map = useMap(mapRef, selectedOffer?.city);
 
   return (
     <section
