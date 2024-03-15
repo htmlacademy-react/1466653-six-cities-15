@@ -3,8 +3,11 @@ import { Helmet } from 'react-helmet-async';
 import { TAppProps } from '../../app';
 import { Footer } from '../../components/footer';
 import { FavoriteLocationsList } from '../../components/favorite-locations-list';
+import { IBaseOffer } from '../../types/offer';
 
-type TFavoritesProps = Pick<TAppProps, 'favorites'>;
+type TFavoritesProps = {
+  favorites: IBaseOffer[];
+};
 
 export const FavoritesPage: FC<TFavoritesProps> = ({ favorites }) => (
   <>

@@ -8,8 +8,12 @@ import { ReviewForm } from '../../components/review-form';
 import { NearPlacesList } from '../../components/near-places-list';
 import { ReviewsList } from '../../components/reviews-list';
 import { NotFoundPage } from '../not-found';
+import { TComment } from '../../types/comment';
 
-type TOfferCardProps = Pick<TAppProps, 'offers' | 'authorizationStatus' | 'comments'>;
+type TOfferCardProps = Pick<TAppProps, 'authorizationStatus'> & {
+  offers: IFullOffer[];
+  comments: TComment[];
+};
 
 export const OfferPage: FC<TOfferCardProps> = ({ offers, authorizationStatus, comments }) => {
   const { id } = useParams();

@@ -1,9 +1,11 @@
 import { FC } from 'react';
-import { TAppProps } from '../../app';
 import { Setting } from '../../const';
 import DateHelper from '../../helpers/date';
+import { TComment } from '../../types/comment';
 
-type TReviewsListProps = Pick<TAppProps, 'comments'>;
+type TReviewsListProps = {
+  comments: TComment[];
+};
 
 const MAX_REVIEWS_NUMBER = 10;
 

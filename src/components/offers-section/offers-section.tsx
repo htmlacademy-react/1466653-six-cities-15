@@ -1,13 +1,13 @@
 import { FC, useState } from 'react';
 import { Nullable } from 'vitest';
-import { TAppProps } from '../../app';
 import { IFullOffer, TCity } from '../../types/offer';
 import { OffersSortingForm } from '../../components/offers-sorting-form';
 import { OffersList } from '../offers-list';
-import { Map } from '../map';
+import { MapComponent as Map} from '../map';
 
-type TOffersSectionProps = Pick<TAppProps, 'offers'> & {
-  city: Nullable<TCity>;
+type TOffersSectionProps = {
+  offers: IFullOffer[];
+  city: TCity;
 };
 
 export const OffersSection: FC<TOffersSectionProps> = ({ offers, city }) => {
@@ -22,14 +22,14 @@ export const OffersSection: FC<TOffersSectionProps> = ({ offers, city }) => {
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
         {
-          city && (<b className="places__found">312 places to stay in {city?.name}</b>)
+          city && (<b className="places__found">{offers.length} places to stay in {city.name}</b>)
         }
         <OffersSortingForm />
         <OffersList offers={offers} cardHoverHandler={cardHoverHandler} />
       </section>
 
       <div className="cities__right-section">
-        <Map offers={ offers } selectedOffer={ activeOffer } />
+        <Map offers={ offers } selectedOffer={ activeOffer } city={city} />
       </div>
     </div>
   );

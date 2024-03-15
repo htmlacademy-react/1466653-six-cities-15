@@ -7,27 +7,20 @@ import { FavoritesPage } from '../pages/favorites';
 import { OfferPage } from '../pages/offer';
 import { NotFoundPage } from '../pages/not-found';
 import { LayoutPage } from '../pages/layout';
-import { IBaseOffer, IFullOffer, TCity } from '../types/offer';
-import { TComment } from '../types/comment';
+// import { IBaseOffer, IFullOffer, TCity } from '../types/offer';
+// import { TComment } from '../types/comment';
 import { AppRoute } from './routes';
 import { AuthorizationStatus } from '../const';
 import { PrivateRoute } from '../components/private-routs';
 import { ScrollToTop } from '../components/scroll-to-top';
+import { offers, favorites, comments, cities } from '../const';
 
 export type TAppProps = {
-  offers: IFullOffer[];
-  favorites: IBaseOffer[];
-  comments: TComment[];
   authorizationStatus: AuthorizationStatus;
-  cities: TCity[];
 };
 
 export const App: FC<PropsWithChildren<TAppProps>> = ({
   authorizationStatus,
-  offers,
-  favorites,
-  comments,
-  cities,
 }) => (
   <HelmetProvider>
     <BrowserRouter>
