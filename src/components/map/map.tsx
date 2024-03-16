@@ -61,8 +61,7 @@ export const MapComponent: FC<TMapProps> = ({ offers, selectedOffer, city }) => 
 
   return (
     <section
-      className="cities__map map"
-      // style={{height: '512px'}}
+      style={{height: '100%'}}
       ref={mapRef}
     />
   );
