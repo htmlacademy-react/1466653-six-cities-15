@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { TCity } from '../../types/offer';
-import { TAppProps } from '../../app';
 
 export type TLocation = {
   id: number;
@@ -22,8 +21,8 @@ export const TabList: FC<TTabListProps> = ({ cities }) => (
             className={`
               locations__item-link
               tabs__item
-              ${activeCity?.name === item.name && 'tabs__item--active'}` }
-            onClick={clickHandler}
+              // tabs__item--active
+            `}
           >
             <span>{item.name}</span>
           </a>
