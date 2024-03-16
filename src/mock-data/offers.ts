@@ -1,24 +1,18 @@
 import { IFullOffer } from '../types/offer';
 import { getRandomInteger, getRandomArrayElement } from '../utils';
-import { IMG_URL, CITIES, CITIES_DESCRIPTION, PLACE_NAMES, LATITUDES, LONGITUDES } from './mock';
+import { IMG_URL, CITIES_DESCRIPTION, PLACE_NAMES, LATITUDES, LONGITUDES } from './mock';
+import { cities } from '../const';
 
 const createRandomOffer = (index: number):IFullOffer => ({
   id: `6af6f711-c28d-4121-82cd-e0b462a27f00${index}`,
   title: getRandomArrayElement(PLACE_NAMES),
   type: 'apartment',
   price: getRandomInteger(100, 1000),
-  city: {
-    name: getRandomArrayElement(CITIES),
-    location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
-      zoom: getRandomInteger(4, 8)
-    }
-  },
+  city: cities[0],
   location: {
     latitude: getRandomArrayElement(LATITUDES),
     longitude: getRandomArrayElement(LONGITUDES),
-    zoom: getRandomInteger(4, 8)
+    zoom: 13,
   },
   isFavorite: !!(getRandomInteger(0, 1)),
   isPremium: !!(getRandomInteger(0, 1)),

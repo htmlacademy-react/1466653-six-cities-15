@@ -41,7 +41,7 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+export const cities: TCity[] = generateCities();
 export const offers: IFullOffer[] = generateOffers(Setting.CARDS_AMOUNT);
 export const favorites: IBaseOffer[] = generateFavorites(Setting.FAVORITES_AMOUNT);
 export const comments: TComment[] = generateComments(Setting.FAVORITES_AMOUNT);
-export const cities: TCity[] = generateCities();
