@@ -1,8 +1,9 @@
 import { FC, useRef, useEffect } from 'react';
 import { Nullable } from 'vitest';
-import { Map, Icon, Marker, layerGroup } from 'leaflet';
+import leaflet, { Map, Icon, Marker, layerGroup } from 'leaflet';
 import { IBaseOffer, IFullOffer, TCity } from '../../types/offer';
 import useMap from '../../hooks/use-map';
+import 'leaflet/dist/leaflet.css';
 
 const MarkerUrl = {
   DEFAULT: './public/img/pin.svg',
@@ -36,26 +37,32 @@ export const MapComponent: FC<TMapProps> = ({ offers, selectedOffer, city }) => 
 
   useEffect(() => {
     if (map) {
-      const markerLayer = layerGroup().addTo(map);
+      // const markerLayer = layerGroup().addTo(map);
 
       offers.forEach((offer) => {
-        const marker = new Marker({
-          lat: offer.location.latitude,
-          lng: offer.location.longitude
-        });
+        leaflet
+          .marker({
+            lat: offer.location.latitude,
+            lng: offer.location.longitude
+          })
+          .addTo(map);
+        // const marker = new Marker({
+        //   lat: offer.location.latitude,
+        //   lng: offer.location.longitude
+        // });
 
-        marker
-          .setIcon(
-            selectedOffer && offer.title === selectedOffer.title
-              ? currentCustomIcon
-              : defaultCustomIcon
-          )
-          .addTo(markerLayer);
+        // marker
+        //   .setIcon(
+        //     selectedOffer && offer.title === selectedOffer.title
+        //       ? currentCustomIcon
+        //       : defaultCustomIcon
+        //   )
+        //   .addTo(markerLayer);
       });
 
-      return () => {
-        map.removeLayer(markerLayer);
-      };
+      // return () => {
+      //   map.removeLayer(markerLayer);
+      // };
     }
   }, [map, offers, selectedOffer]);
 
