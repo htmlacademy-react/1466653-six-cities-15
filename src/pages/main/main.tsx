@@ -10,13 +10,11 @@ type TMainPageProps = {
   cities: TCity[];
 };
 
-export const MainPage: FC<TMainPageProps> = ({ offers, cities }) =>
-// const [activeCity, setActiveCity] = useState<Nullable<TCity>>(cities[0]);
-// const filteredOffers = offers.filter((offer) => offer.city.name === activeCity?.name);
+export const MainPage: FC<TMainPageProps> = ({ offers, cities }) => {
+  const emptyOffersClass = offers.length === 0 ? 'page__main--index-empty' : '';
 
-// const selectCityHandler = (city: TCity) => true;
-  (
-    <main className={`page__main page__main--index ${offers.length === 0 ?? 'page__main--index-empty'}`}>
+  return (
+    <main className={`page__main page__main--index ${emptyOffersClass}`}>
       <Helmet>
         <title>Cities</title>
       </Helmet>
@@ -35,4 +33,4 @@ export const MainPage: FC<TMainPageProps> = ({ offers, cities }) =>
       </div>
     </main>
   );
-
+};
