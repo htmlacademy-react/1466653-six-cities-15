@@ -3,7 +3,7 @@ import { Nullable } from 'vitest';
 import { IFullOffer, TCity } from '../../types/offer';
 import { OffersSortingForm } from '../../components/offers-sorting-form';
 import { OffersList } from '../offers-list';
-import { MapComponent as Map} from '../map';
+import { Map} from '../map';
 
 type TOffersSectionProps = {
   offers: IFullOffer[];

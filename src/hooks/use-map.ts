@@ -1,5 +1,4 @@
 import { useEffect, useState, MutableRefObject, useRef } from 'react';
-// import { Map, TileLayer } from 'leaflet';
 import leaflet, { Map } from 'leaflet';
 import { TCity } from '../types/offer';
 
@@ -24,12 +23,7 @@ export default function useMap(
       });
 
       leaflet
-        .tileLayer(
-          LEAFLET_URL,
-          {
-            attribution: TILE_LAYER_ATTRIBUTE,
-          }
-        )
+        .tileLayer(LEAFLET_URL, { attribution: TILE_LAYER_ATTRIBUTE })
         .addTo(instance);
 
       setMap(instance);

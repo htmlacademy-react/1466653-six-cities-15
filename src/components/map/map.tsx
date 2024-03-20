@@ -1,74 +1,60 @@
 import { FC, useRef, useEffect } from 'react';
-import { Nullable } from 'vitest';
-import leaflet, { Map, Icon, Marker, layerGroup } from 'leaflet';
-import { IBaseOffer, IFullOffer, TCity } from '../../types/offer';
+import leaflet from 'leaflet';
+import { IFullOffer, TCity } from '../../types/offer';
 import useMap from '../../hooks/use-map';
 import 'leaflet/dist/leaflet.css';
 
-const MarkerUrl = {
-  DEFAULT: './public/img/pin.svg',
-  CURRENT: './public/img/pin-active.svg',
+const Marker = {
+  URL_DEFAULT: './public/img/pin.svg',
+  URL_CURRENT: './public/img/pin-active.svg',
+  ICON_WIDTH: 27,
+  ICON_HEIGHT: 39,
+  ICON_ANCHOR_X: 14,
+  ICON_ANCHOR_Y: 20,
 };
 
 type TMapProps = {
   offers: IFullOffer[];
   city: TCity;
-  selectedOffer: Nullable<IBaseOffer>;
+  selectedOffer?: IFullOffer;
 };
 
-const defaultCustomIcon = new Icon({
-  iconUrl: MarkerUrl.DEFAULT,
-  iconSize: [27, 39],
-  iconAnchor: [14, 20]
+const defaultCustomIcon = leaflet.icon({
+  iconUrl: Marker.URL_DEFAULT,
+  iconSize: [Marker.ICON_WIDTH, Marker.ICON_HEIGHT],
+  iconAnchor: [Marker.ICON_ANCHOR_X, Marker.ICON_ANCHOR_Y]
 });
 
-const currentCustomIcon = new Icon({
-  iconUrl: MarkerUrl.CURRENT,
-  iconSize: [27, 39],
-  iconAnchor: [14, 20]
+const currentCustomIcon = leaflet.icon({
+  iconUrl: Marker.URL_CURRENT,
+  iconSize: [Marker.ICON_WIDTH, Marker.ICON_HEIGHT],
+  iconAnchor: [Marker.ICON_ANCHOR_X, Marker.ICON_ANCHOR_Y]
 });
 
-export const MapComponent: FC<TMapProps> = ({ offers, selectedOffer, city }) => {
-// export const MapComponent: FC<TMapProps> = () => {
+export const Map: FC<TMapProps> = ({ offers, selectedOffer, city }) => {
   const mapRef = useRef<HTMLElement | null>(null);
-  // useMap(mapRef, city);
 
-  const map: Map | null = useMap(mapRef, city);
+  const map = useMap(mapRef, city);
 
   useEffect(() => {
     if (map) {
-      // const markerLayer = layerGroup().addTo(map);
-
       offers.forEach((offer) => {
         leaflet
           .marker({
             lat: offer.location.latitude,
             lng: offer.location.longitude
+          }, {
+            icon: offer.id === selectedOffer?.id ? currentCustomIcon : defaultCustomIcon,
           })
           .addTo(map);
-        // const marker = new Marker({
-        //   lat: offer.location.latitude,
-        //   lng: offer.location.longitude
-        // });
-
-        // marker
-        //   .setIcon(
-        //     selectedOffer && offer.title === selectedOffer.title
-        //       ? currentCustomIcon
-        //       : defaultCustomIcon
-        //   )
-        //   .addTo(markerLayer);
       });
-
-      // return () => {
-      //   map.removeLayer(markerLayer);
-      // };
     }
   }, [map, offers, selectedOffer]);
 
   return (
     <section
-      style={{height: '100%'}}
+      className="cities__map map"
+      style={{height: '100%', width: '100%'}}
       ref={mapRef}
     />
   );
