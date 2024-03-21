@@ -2,8 +2,11 @@ import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Header } from '../../components/header';
 import { TAppProps } from '../../app';
+import { IBaseOffer } from '../../types/offer';
 
-type TLayoutPageProps = Pick<TAppProps, 'authorizationStatus' | 'favorites'>;
+type TLayoutPageProps = Pick<TAppProps, 'authorizationStatus'> & {
+  favorites: IBaseOffer[];
+};
 
 const PageClass = {
   MAIN: 'page--gray page--main',

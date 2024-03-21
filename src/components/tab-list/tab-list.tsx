@@ -1,6 +1,5 @@
 import { FC } from 'react';
-import { NavLink } from 'react-router-dom';
-import { LOCATIONS } from './../../mock-data/mock';
+import { TCity } from '../../types/offer';
 
 export type TLocation = {
   id: number;
@@ -8,16 +7,28 @@ export type TLocation = {
   src: string;
 };
 
-export const TabList: FC = () => (
+type TTabListProps = {
+  cities:TCity[];
+};
+
+export const TabList: FC<TTabListProps> = ({ cities }) => (
   <ul className="locations__list tabs__list">
     {
-      LOCATIONS.length > 0 && (LOCATIONS.map((item: TLocation) => (
-        <li className="locations__item" key={ item.id }>
-          <NavLink className="locations__item-link tabs__item" to={item.src}>
-            <span>{item.title}</span>
-          </NavLink>
+      cities.length > 0 && (cities.map((item: TCity) => (
+        <li className="locations__item" key={ item.name }>
+          <a
+            href='#'
+            className={`
+              locations__item-link
+              tabs__item
+              // tabs__item--active
+            `}
+          >
+            <span>{item.name}</span>
+          </a>
         </li>
       )))
     }
   </ul>
 );
+

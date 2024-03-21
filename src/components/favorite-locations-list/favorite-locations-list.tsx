@@ -1,10 +1,12 @@
 import { FC } from 'react';
-import { TAppProps } from '../../app';
 import { LOCATIONS } from '../../mock-data/mock';
 import { FavoriteLocationOffers } from '../favorite-location-offers';
 import { TFavoriteLocation } from '../favorite-location-offers/favorite-location-offers';
+import { IBaseOffer } from '../../types/offer';
 
-type TFavoriteLocationsListProps = Pick<TAppProps, 'favorites'>;
+type TFavoriteLocationsListProps = {
+  favorites: IBaseOffer[];
+};
 
 export const FavoriteLocationsList: FC<TFavoriteLocationsListProps> = ({ favorites }) => {
   const sortedFavoritesList: TFavoriteLocation[] = LOCATIONS.map((location) => ({

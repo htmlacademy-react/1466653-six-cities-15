@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom';
 import { TAppProps } from '../../app';
 import { AuthorizationStatus } from '../../const';
 import { AppRoute } from '../../app/routes';
+import { IBaseOffer } from '../../types/offer';
 
-type THeaderNavListProps = Pick<TAppProps, 'authorizationStatus' | 'favorites'>;
+type THeaderNavListProps = Pick<TAppProps, 'authorizationStatus'> & {
+  favorites: IBaseOffer[];
+};
 
 export const HeaderNavList: FC<THeaderNavListProps> = ({ authorizationStatus, favorites }) => (
   authorizationStatus === AuthorizationStatus.Auth

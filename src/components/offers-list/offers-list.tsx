@@ -1,8 +1,9 @@
 import { FC } from 'react';
-import { TAppProps } from '../../app';
 import { OfferCard } from '../offer-card';
+import { IFullOffer } from '../../types/offer';
 
-type TOffersListProps = Pick<TAppProps, 'offers'> & {
+type TOffersListProps = {
+  offers: IFullOffer[];
   cardHoverHandler: () => void;
 }
 

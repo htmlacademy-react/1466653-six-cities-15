@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom';
 import { TAppProps } from '../../app';
 import { AppRoute } from '../../app/routes';
 import { HeaderNavList } from '../header-nav-list';
+import { IBaseOffer } from '../../types/offer';
 
-type THeaderProps = Pick<TAppProps, 'authorizationStatus'| 'favorites'>;
+type THeaderProps = Pick<TAppProps, 'authorizationStatus'> & {
+  favorites: IBaseOffer[];
+};
 
 export const Header: FC<THeaderProps> = ({ authorizationStatus, favorites }) => (
   <header className="header">

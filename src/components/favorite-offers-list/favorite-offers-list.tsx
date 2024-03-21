@@ -1,12 +1,13 @@
 import { FC } from 'react';
-import { TAppProps } from '../../app';
 import { Setting } from '../../const';
 import { capitalizeFirstLetter } from '../../utils';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../app/routes';
+import { IBaseOffer } from '../../types/offer';
 
-type TFavoriteOffersListProps = Pick<TAppProps, 'favorites'>;
-
+type TFavoriteOffersListProps = {
+  favorites: IBaseOffer[];
+};
 export const FavoriteOffersList: FC<TFavoriteOffersListProps> = ({ favorites }) => (
   <div className="favorites__places">
     {

@@ -5,4 +5,4 @@ export const getRandomInteger = (min: number, max: number): number => {
   return Math.floor(rand);
 };
 
-export const getRandomArrayElement = (array: string[]): string => array[getRandomInteger(0, array.length - 1)];
+export const getRandomArrayElement = <T>(array: T[]): T => array[getRandomInteger(0, array.length - 1)];
