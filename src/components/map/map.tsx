@@ -1,5 +1,6 @@
 import { FC, useRef, useEffect } from 'react';
 import leaflet from 'leaflet';
+import { Nullable } from 'vitest';
 import { IFullOffer, TCity } from '../../types/offer';
 import useMap from '../../hooks/use-map';
 import 'leaflet/dist/leaflet.css';
@@ -16,7 +17,7 @@ const Marker = {
 type TMapProps = {
   offers: IFullOffer[];
   city: TCity;
-  selectedOffer?: IFullOffer;
+  selectedOffer: Nullable<IFullOffer>;
 };
 
 const defaultCustomIcon = leaflet.icon({
