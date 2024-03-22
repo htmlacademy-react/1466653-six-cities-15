@@ -2,13 +2,12 @@ import { FC } from 'react';
 import { TAppProps } from '../../app';
 import { useParams } from 'react-router-dom';
 import { IFullOffer } from '../../types/offer';
-import { AuthorizationStatus, Setting } from '../../const';
+import { Setting } from '../../const';
 import { capitalizeFirstLetter } from '../../utils';
-import { ReviewForm } from '../../components/review-form';
 import { NearPlacesList } from '../../components/near-places-list';
-import { ReviewsList } from '../../components/reviews-list';
 import { NotFoundPage } from '../not-found';
 import { TReview } from '../../types/review';
+import { ReviewsSection } from '../../components/reviews-section';
 
 type TOfferCardProps = Pick<TAppProps, 'authorizationStatus'> & {
   offers: IFullOffer[];
@@ -125,16 +124,7 @@ export const OfferPage: FC<TOfferCardProps> = ({ offers, authorizationStatus, re
               </div>
             </div>
 
-            <section className="offer__reviews reviews">
-              <h2 className="reviews__title">
-                Reviews · <span className="reviews__amount">{reviews.length}</span>
-              </h2>
-              <ReviewsList reviews={reviews} />
-              {
-                authorizationStatus === AuthorizationStatus.Auth && <ReviewForm />
-              }
-            </section>
-
+            <ReviewsSection authorizationStatus={authorizationStatus} reviews={reviews} />
           </div>
         </div>
         <section className="offer__map map" />
