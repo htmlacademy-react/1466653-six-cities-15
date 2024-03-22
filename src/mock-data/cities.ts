@@ -1,6 +1,4 @@
 import { TCity } from '../types/offer';
-// import { getRandomInteger, getRandomArrayElement } from '../utils';
-// import { CITIES, LATITUDES, LONGITUDES } from './mock';
 
 export const generateCities = (): TCity[] => (
   [
