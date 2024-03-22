@@ -29,7 +29,12 @@ export const OffersSection: FC<TOffersSectionProps> = ({ offers, city }) => {
       </section>
 
       <div className="cities__right-section">
-        <Map offers={ offers } selectedOffer={ activeOffer } city={city} />
+        <Map
+          offers={ offers }
+          selectedOffer={ activeOffer }
+          city={city}
+          mapClassName={'cities'}
+        />
       </div>
     </div>
   );

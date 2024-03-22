@@ -14,10 +14,16 @@ const Marker = {
   ICON_ANCHOR_Y: 20,
 };
 
+const classNameVariants = {
+  offer: 'offer__map',
+  cities: 'cities__map',
+};
+
 type TMapProps = {
   offers: IFullOffer[];
   city: TCity;
   selectedOffer: Nullable<IFullOffer>;
+  mapClassName: keyof typeof classNameVariants;
 };
 
 const defaultCustomIcon = leaflet.icon({
@@ -32,7 +38,7 @@ const currentCustomIcon = leaflet.icon({
   iconAnchor: [Marker.ICON_ANCHOR_X, Marker.ICON_ANCHOR_Y]
 });
 
-export const Map: FC<TMapProps> = ({ offers, selectedOffer, city }) => {
+export const Map: FC<TMapProps> = ({ offers, selectedOffer = null, city, mapClassName }) => {
   const mapRef = useRef<HTMLElement | null>(null);
 
   const map = useMap(mapRef, city);
@@ -54,8 +60,7 @@ export const Map: FC<TMapProps> = ({ offers, selectedOffer, city }) => {
 
   return (
     <section
-      className="cities__map map"
-      style={{height: '100%', width: '100%'}}
+      className={`${classNameVariants[mapClassName]} map`}
       ref={mapRef}
     />
   );

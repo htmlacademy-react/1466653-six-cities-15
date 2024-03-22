@@ -8,15 +8,17 @@ import { NearPlacesList } from '../../components/near-places-list';
 import { NotFoundPage } from '../not-found';
 import { TReview } from '../../types/review';
 import { ReviewsSection } from '../../components/reviews-section';
+import { Map } from '../../components/map';
 
-type TOfferCardProps = Pick<TAppProps, 'authorizationStatus'> & {
+type TOfferPageProps = Pick<TAppProps, 'authorizationStatus'> & {
   offers: IFullOffer[];
   reviews: TReview[];
 };
 
-export const OfferPage: FC<TOfferCardProps> = ({ offers, authorizationStatus, reviews }) => {
+export const OfferPage: FC<TOfferPageProps> = ({ offers, authorizationStatus, reviews }) => {
   const { id } = useParams();
   const currentOffer: IFullOffer | undefined = offers.find((offer: IFullOffer) => offer.id === id);
+  const nearbyOffers: IFullOffer[] = offers.slice(0, 3);
 
   if (!currentOffer) {
     return <NotFoundPage />;
@@ -25,6 +27,7 @@ export const OfferPage: FC<TOfferCardProps> = ({ offers, authorizationStatus, re
   const ratingWidthStyle = `${currentOffer.rating * (100 / Setting.MAX_RATING)}%`;
   const capacityTitle = `Max\u00a0${currentOffer.maxAdults}\u00a0${currentOffer.maxAdults > 1 ? 'adults' : 'adult'}`;
   const bedroomsTitle = `${currentOffer.bedrooms}\u00a0${currentOffer.bedrooms > 1 ? 'Bedrooms' : 'Bedroom'}`;
+  nearbyOffers.push(currentOffer);
 
   return (
     <main className="page__main page__main--offer">
@@ -127,7 +130,12 @@ export const OfferPage: FC<TOfferCardProps> = ({ offers, authorizationStatus, re
             <ReviewsSection authorizationStatus={authorizationStatus} reviews={reviews} />
           </div>
         </div>
-        <section className="offer__map map" />
+        <Map
+          offers={nearbyOffers}
+          city={currentOffer.city}
+          selectedOffer={currentOffer}
+          mapClassName={'offer'}
+        />
       </section>
       <div className="container">
         <section className="near-places places">
