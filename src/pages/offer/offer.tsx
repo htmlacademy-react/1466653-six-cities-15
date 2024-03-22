@@ -8,14 +8,14 @@ import { ReviewForm } from '../../components/review-form';
 import { NearPlacesList } from '../../components/near-places-list';
 import { ReviewsList } from '../../components/reviews-list';
 import { NotFoundPage } from '../not-found';
-import { TComment } from '../../types/comment';
+import { TReview } from '../../types/review';
 
 type TOfferCardProps = Pick<TAppProps, 'authorizationStatus'> & {
   offers: IFullOffer[];
-  comments: TComment[];
+  reviews: TReview[];
 };
 
-export const OfferPage: FC<TOfferCardProps> = ({ offers, authorizationStatus, comments }) => {
+export const OfferPage: FC<TOfferCardProps> = ({ offers, authorizationStatus, reviews }) => {
   const { id } = useParams();
   const currentOffer: IFullOffer | undefined = offers.find((offer: IFullOffer) => offer.id === id);
 
@@ -124,15 +124,17 @@ export const OfferPage: FC<TOfferCardProps> = ({ offers, authorizationStatus, co
                 </p>
               </div>
             </div>
+
             <section className="offer__reviews reviews">
               <h2 className="reviews__title">
-                Reviews · <span className="reviews__amount">{comments.length}</span>
+                Reviews · <span className="reviews__amount">{reviews.length}</span>
               </h2>
-              <ReviewsList comments={comments} />
+              <ReviewsList reviews={reviews} />
               {
                 authorizationStatus === AuthorizationStatus.Auth && <ReviewForm />
               }
             </section>
+
           </div>
         </div>
         <section className="offer__map map" />

@@ -1,8 +1,8 @@
-import { TComment } from './types/comment';
+import { TReview } from './types/review';
 import { IFullOffer, IBaseOffer, TCity } from './types/offer';
 import { generateFavorites } from './mock-data/favorites';
 import { generateOffers } from './mock-data/offers';
-import { generateComments } from './mock-data/comments';
+import { generateReviews } from './mock-data/reviews';
 import { generateCities } from './mock-data/cities';
 
 export const RATING: { value: number; title: string }[] = [
@@ -31,7 +31,7 @@ export const RATING: { value: number; title: string }[] = [
 export const Setting = {
   CARDS_AMOUNT: 9,
   FAVORITES_AMOUNT: 5,
-  COMMENTS_AMOUNT: 11,
+  REVIEWS_AMOUNT: 11,
   MAX_RATING: RATING.length,
 };
 
@@ -44,4 +44,4 @@ export enum AuthorizationStatus {
 export const cities: TCity[] = generateCities();
 export const offers: IFullOffer[] = generateOffers(Setting.CARDS_AMOUNT);
 export const favorites: IBaseOffer[] = generateFavorites(Setting.FAVORITES_AMOUNT);
-export const comments: TComment[] = generateComments(Setting.FAVORITES_AMOUNT);
+export const reviews: TReview[] = generateReviews(Setting.REVIEWS_AMOUNT);

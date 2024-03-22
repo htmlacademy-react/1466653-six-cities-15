@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import { Setting } from '../../const';
 import DateHelper from '../../helpers/date';
-import { TComment } from '../../types/review';
+import { TReview } from '../../types/review';
 
 type TReviewsItemProps = {
-  comment: TComment;
+  comment: TReview;
 };
 
 export const ReviewsItem: FC<TReviewsItemProps> = ({comment}) => {
