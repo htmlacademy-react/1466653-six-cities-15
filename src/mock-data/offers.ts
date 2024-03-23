@@ -20,13 +20,24 @@ const createRandomOffer = (index: number):IFullOffer => ({
   description: getRandomArrayElement(CITIES_DESCRIPTION),
   bedrooms: getRandomInteger(1, 4),
   goods: [
-    'Heating'
+    'Heating',
+    'Wi-Fi',
+    'Washing machine',
+    'Towels',
+    'Heating',
+    'Coffee machine',
+    'Baby seat',
+    'Kitchen',
+    'Dishwasher',
+    'Cabel TV',
+    'Fridge',
   ],
   host: {
     name: 'Oliver Conner',
     avatarUrl: `${IMG_URL}${index + 1}`,
     isPro: !!(getRandomInteger(0, 1)),
   },
+  previewImage: `${IMG_URL}${(getRandomInteger(1, 100))}`,
   images: [
     `${IMG_URL}${(getRandomInteger(1, 100))}`,
     `${IMG_URL}${(getRandomInteger(1, 100))}`,

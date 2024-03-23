@@ -1,7 +1,7 @@
 import { FC, useRef, useEffect } from 'react';
 import leaflet from 'leaflet';
 import { Nullable } from 'vitest';
-import { IFullOffer, TCity } from '../../types/offer';
+import { IBaseOffer, TCity } from '../../types/offer';
 import useMap from '../../hooks/use-map';
 import 'leaflet/dist/leaflet.css';
 
@@ -20,9 +20,9 @@ const classNameVariants = {
 };
 
 type TMapProps = {
-  offers: IFullOffer[];
+  offers: IBaseOffer[];
   city: TCity;
-  selectedOffer: Nullable<IFullOffer>;
+  selectedOffer: Nullable<IBaseOffer>;
   mapClassName: keyof typeof classNameVariants;
 };
 
@@ -40,7 +40,6 @@ const currentCustomIcon = leaflet.icon({
 
 export const Map: FC<TMapProps> = ({ offers, selectedOffer = null, city, mapClassName }) => {
   const mapRef = useRef<HTMLElement | null>(null);
-
   const map = useMap(mapRef, city);
 
   useEffect(() => {

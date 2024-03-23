@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { OfferCard } from '../offer-card';
-import { IFullOffer } from '../../types/offer';
+import { IBaseOffer } from '../../types/offer';
 
 type TOffersListProps = {
-  offers: IFullOffer[];
+  offers: IBaseOffer[];
   cardHoverHandler: () => void;
 }
 
@@ -14,6 +14,7 @@ export const OffersList: FC<TOffersListProps> = ({ offers, cardHoverHandler }) =
         <OfferCard
           key={offer.id}
           offer={offer}
+          cardClassName={'cities'}
           hoverHandler={cardHoverHandler}
         />)
       )

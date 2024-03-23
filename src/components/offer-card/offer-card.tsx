@@ -1,17 +1,25 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { IFullOffer } from '../../types/offer';
+import { IBaseOffer } from '../../types/offer';
 import { AppRoute } from '../../app/routes';
 import { Setting } from '../../const';
 import { capitalizeFirstLetter } from './../../utils';
 
-type TOfferCardProps = {
-  offer: IFullOffer;
-  hoverHandler: (offer?: IFullOffer) => void;
+const classNameVariants = {
+  nearPlaces: 'near-places__card',
+  cities: 'cities__card',
 };
 
-export const OfferCard: FC<TOfferCardProps> = ({ offer, hoverHandler }) => {
+type TOfferCardProps = {
+  offer:IBaseOffer;
+  cardClassName: keyof typeof classNameVariants;
+  hoverHandler: (offer?: IBaseOffer) => void;
+};
+
+export const OfferCard: FC<TOfferCardProps> = ({ offer, cardClassName, hoverHandler }) => {
   const ratingWidthStyle = `${offer.rating * (100 / Setting.MAX_RATING)}%`;
+  const previewImageLink = offer.previewImage || '';
+
   const mouseEnterHandler = () => {
     hoverHandler(offer);
   };
@@ -22,7 +30,7 @@ export const OfferCard: FC<TOfferCardProps> = ({ offer, hoverHandler }) => {
   return (
     <Link to={`${AppRoute.Offer}/${offer.id}`} >
       <article
-        className="cities__card place-card"
+        className={`${classNameVariants[cardClassName]} place-card`}
         onMouseEnter={mouseEnterHandler}
         onMouseLeave={mouseLeaveHandler}
       >
@@ -31,7 +39,7 @@ export const OfferCard: FC<TOfferCardProps> = ({ offer, hoverHandler }) => {
         <div className="cities__image-wrapper place-card__image-wrapper">
           <img
             className="place-card__image"
-            src={offer.images[0]}
+            src={previewImageLink}
             width={260}
             height={200}
             alt="Place image"
