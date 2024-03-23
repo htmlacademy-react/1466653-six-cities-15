@@ -21,7 +21,7 @@ export const TabList: FC<TTabListProps> = ({ cities }) => (
             className={`
               locations__item-link
               tabs__item
-              // tabs__item--active
+              tabs__item--active
             `}
           >
             <span>{item.name}</span>

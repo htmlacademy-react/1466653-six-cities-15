@@ -23,7 +23,7 @@ export interface IBaseOffer {
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
-  previewImage?: string; // ???
+  previewImage?: string;
 }
 
 export interface IFullOffer extends IBaseOffer {
