@@ -2,27 +2,29 @@ import { FC } from 'react';
 import { TAppProps } from '../../app';
 import { useParams } from 'react-router-dom';
 import { IFullOffer } from '../../types/offer';
-import { AuthorizationStatus, Setting } from '../../const';
+import { Setting } from '../../const';
 import { capitalizeFirstLetter } from '../../utils';
-import { ReviewForm } from '../../components/review-form';
 import { NearPlacesList } from '../../components/near-places-list';
-import { ReviewsList } from '../../components/reviews-list';
 import { NotFoundPage } from '../not-found';
-import { TComment } from '../../types/comment';
+import { TReview } from '../../types/review';
+import { ReviewsSection } from '../../components/reviews-section';
+import { Map } from '../../components/map';
 
-type TOfferCardProps = Pick<TAppProps, 'authorizationStatus'> & {
+type TOfferPageProps = Pick<TAppProps, 'authorizationStatus'> & {
   offers: IFullOffer[];
-  comments: TComment[];
+  reviews: TReview[];
 };
 
-export const OfferPage: FC<TOfferCardProps> = ({ offers, authorizationStatus, comments }) => {
+export const OfferPage: FC<TOfferPageProps> = ({ offers, authorizationStatus, reviews }) => {
   const { id } = useParams();
   const currentOffer: IFullOffer | undefined = offers.find((offer: IFullOffer) => offer.id === id);
+  const nearbyOffers: IFullOffer[] = offers.slice(1, 4);
 
   if (!currentOffer) {
     return <NotFoundPage />;
   }
 
+  const mapOffers: IFullOffer[] = [...nearbyOffers, currentOffer];
   const ratingWidthStyle = `${currentOffer.rating * (100 / Setting.MAX_RATING)}%`;
   const capacityTitle = `Max\u00a0${currentOffer.maxAdults}\u00a0${currentOffer.maxAdults > 1 ? 'adults' : 'adult'}`;
   const bedroomsTitle = `${currentOffer.bedrooms}\u00a0${currentOffer.bedrooms > 1 ? 'Bedrooms' : 'Bedroom'}`;
@@ -91,16 +93,13 @@ export const OfferPage: FC<TOfferCardProps> = ({ offers, authorizationStatus, co
             <div className="offer__inside">
               <h2 className="offer__inside-title">What&apos;s inside</h2>
               <ul className="offer__inside-list">
-                <li className="offer__inside-item">Wi-Fi</li>
-                <li className="offer__inside-item">Washing machine</li>
-                <li className="offer__inside-item">Towels</li>
-                <li className="offer__inside-item">Heating</li>
-                <li className="offer__inside-item">Coffee machine</li>
-                <li className="offer__inside-item">Baby seat</li>
-                <li className="offer__inside-item">Kitchen</li>
-                <li className="offer__inside-item">Dishwasher</li>
-                <li className="offer__inside-item">Cabel TV</li>
-                <li className="offer__inside-item">Fridge</li>
+                {
+                  currentOffer.goods.map((item) => (
+                    <li className="offer__inside-item" key={item}>
+                      {item}
+                    </li>
+                  ))
+                }
               </ul>
             </div>
             <div className="offer__host">
@@ -112,7 +111,7 @@ export const OfferPage: FC<TOfferCardProps> = ({ offers, authorizationStatus, co
                     src={currentOffer.host.avatarUrl}
                     width={74}
                     height={74}
-                    alt="Host avatar"
+                    alt={`Avatar of ${currentOffer.host.name}`}
                   />
                 </div>
                 <span className="offer__user-name">{currentOffer.host.name}</span>
@@ -124,25 +123,25 @@ export const OfferPage: FC<TOfferCardProps> = ({ offers, authorizationStatus, co
                 </p>
               </div>
             </div>
-            <section className="offer__reviews reviews">
-              <h2 className="reviews__title">
-                Reviews · <span className="reviews__amount">{comments.length}</span>
-              </h2>
-              <ReviewsList comments={comments} />
-              {
-                authorizationStatus === AuthorizationStatus.Auth && <ReviewForm />
-              }
-            </section>
+
+            <ReviewsSection authorizationStatus={authorizationStatus} reviews={reviews} />
           </div>
         </div>
-        <section className="offer__map map" />
+
+        <Map
+          offers={mapOffers}
+          city={currentOffer.city}
+          selectedOffer={currentOffer}
+          mapClassName={'offer'}
+        />
       </section>
+
       <div className="container">
         <section className="near-places places">
           <h2 className="near-places__title">
             Other places in the neighbourhood
           </h2>
-          <NearPlacesList />
+          <NearPlacesList offers={nearbyOffers}/>
         </section>
       </div>
     </main>
